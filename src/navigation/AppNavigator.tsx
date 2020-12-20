@@ -1,14 +1,14 @@
 //rnfes
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 /* navigator */
-import { HomeStackNavigator } from "./HomeStackNavigator";
+import { MainTabNavigator } from "./MainTabNavigator";
 
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <HomeStackNavigator />
+      <MainTabNavigator />
     </NavigationContainer>
   );
 };

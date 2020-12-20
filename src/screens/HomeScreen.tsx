@@ -1,14 +1,20 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet } from "react-native";
 /* components */
 import ShopReviewItem from "../components/ShopReviewItem";
 /* lib */
 import { getShops } from "../lib/firebase";
 /* types */
 import { Shop } from "../types/shop";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../types/navigation";
 
-export const HomeScreen = ({ navigation }) => {
+type Props = {
+  navigation: StackNavigationProp<RootStackParamList, "Home">;
+};
+
+export const HomeScreen = ({ navigation }: Props) => {
   const [shops, setShops] = useState<Shop[]>([]);
 
   useEffect(() => {
@@ -24,8 +30,8 @@ export const HomeScreen = ({ navigation }) => {
   //   <ShopReviewItem shop={shop} key={index.toString()} />
   // ));
 
-  const onPressShop = () => {
-    navigation.navigate("Shop");
+  const onPressShop = (shop: Shop) => {
+    navigation.navigate("Shop", { shop });
   };
 
   return (
@@ -33,7 +39,7 @@ export const HomeScreen = ({ navigation }) => {
       <FlatList
         data={shops}
         renderItem={({ item }: { item: Shop }) => (
-          <ShopReviewItem shop={item} onPress={onPressShop} />
+          <ShopReviewItem shop={item} onPress={() => onPressShop(item)} />
         )}
         keyExtractor={(item, index) => index.toString()}
         numColumns={2}

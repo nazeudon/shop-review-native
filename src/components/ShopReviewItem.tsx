@@ -9,7 +9,7 @@ import {
 } from "react-native";
 /* types */
 import { Shop } from "../types/shop";
-import Stars from "./Stars";
+import { Stars } from "./Stars";
 
 type Props = {
   shop: Shop;

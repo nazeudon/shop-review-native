@@ -8,7 +8,7 @@ type Props = {
   textSize?: number;
 };
 
-const Stars: React.FC<Props> = ({
+export const Stars: React.FC<Props> = ({
   score,
   starSize = 16,
   textSize = 14,
@@ -39,8 +39,6 @@ const Stars: React.FC<Props> = ({
     </View>
   );
 };
-
-export default Stars;
 
 const styles = StyleSheet.create({
   container: {

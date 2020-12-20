@@ -1,13 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from "react";
+import { SafeAreaView, StyleSheet } from "react-native";
+/* components */
+import { ShopDetail } from "../components/ShopDetail";
+import { FloatingActionButton } from "../components/FloatingActionButton";
+/* types */
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../types/navigation";
+import { RouteProp } from "@react-navigation/native";
 
-export const ShopScreen: React.FC = () => {
-  useEffect(() => {}, []);
+type Props = {
+  navigation: StackNavigationProp<RootStackParamList, "Shop">;
+  route: RouteProp<RootStackParamList, "Shop">;
+};
 
+export const ShopScreen: React.FC<Props> = ({ navigation, route }: Props) => {
+  const { shop } = route.params;
+
+  useEffect(() => {
+    navigation.setOptions({ title: shop.name });
+  }, [shop]);
   return (
-    <View>
-      <Text>Shop Screen</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <ShopDetail shop={shop} />
+      <FloatingActionButton
+        iconName="plus"
+        onPress={() => navigation.navigate("CreateReview", { shop })}
+      />
+    </SafeAreaView>
   );
 };
 
