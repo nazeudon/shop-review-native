@@ -19,6 +19,7 @@ export const ShopScreen: React.FC<Props> = ({ navigation, route }: Props) => {
   useEffect(() => {
     navigation.setOptions({ title: shop.name });
   }, [shop]);
+
   return (
     <SafeAreaView style={styles.container}>
       <ShopDetail shop={shop} />
